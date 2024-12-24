@@ -24,15 +24,14 @@ const App: React.FC = () => {
             >
               <div className="flex justify-between items-center">
                 <span className="text-lg font-medium text-gray-700">
-                  #{index + 1} - Branch: {item.branch}
+                  #{index + 1} {item.branch}
                 </span>
-                <span className="text-sm text-gray-500">
-                  {/* {new Date(item.timestamp).toLocaleString()} */}
-                  {item.timestamp}
-                </span>
+                  <span className="text-sm text-gray-500">
+                    {new Date(item.timestamp).toLocaleString()}
+                  </span>
               </div>
               <div className="mt-2 text-gray-600">
-                <strong>Execution Time:</strong> {item.executionTime.toFixed(2)} ms
+                <strong>処理時間:</strong> {item.executionTime.toFixed(2)} ms
               </div>
             </li>
           ))}
