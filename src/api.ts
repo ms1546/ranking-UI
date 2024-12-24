@@ -4,7 +4,6 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from './config';
 
 Amplify.configure(awsconfig);
-
 const client = generateClient();
 
 const listBenchmarksQuery = `
