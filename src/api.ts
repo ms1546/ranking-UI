@@ -9,16 +9,24 @@ const client = generateClient();
 const listBenchmarksQuery = `
   query ListBenchmarks {
     listBenchmarks {
-      branch
-      timestamp
-      executionTime
+      items {
+        branch
+        timestamp
+        executionTime
+      }
     }
   }
 `;
 
 export async function fetchRankings(): Promise<Benchmark[]> {
-  const response = (await client.graphql({ query: listBenchmarksQuery })) as any;
-  return response.data.listBenchmarks.sort(
-    (a: Benchmark, b: Benchmark) => a.executionTime - b.executionTime
-  );
+  try {
+    const response: any = await client.graphql({ query: listBenchmarksQuery });
+    console.log("GraphQL Response:", response);
+    return response.data.listBenchmarks.items.sort(
+      (a: Benchmark, b: Benchmark) => a.executionTime - b.executionTime
+    );
+  } catch (error) {
+    console.error("Error fetching rankings:", error);
+    throw error;
+  }
 }

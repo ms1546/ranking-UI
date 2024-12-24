@@ -1,4 +1,6 @@
-const awsconfig: any = {
+import { AwsConfig } from './types';
+
+const awsconfig: AwsConfig = {
     aws_project_region: import.meta.env.VITE_REGION,
     aws_appsync_graphqlEndpoint: import.meta.env.VITE_GRAPHQL_ENDPOINT,
     aws_appsync_region: import.meta.env.VITE_REGION,
