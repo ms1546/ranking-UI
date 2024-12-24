@@ -1,5 +1,11 @@
 import { Benchmark } from './types';
-import { API } from 'aws-amplify';
+import { generateClient } from 'aws-amplify/api';
+import { Amplify } from 'aws-amplify';
+import awsconfig from './config';
+
+Amplify.configure(awsconfig);
+
+const client = generateClient();
 
 const listBenchmarksQuery = `
   query ListBenchmarks {
@@ -12,7 +18,7 @@ const listBenchmarksQuery = `
 `;
 
 export async function fetchRankings(): Promise<Benchmark[]> {
-  const response = (await API.graphql({ query: listBenchmarksQuery })) as any;
+  const response = (await client.graphql({ query: listBenchmarksQuery })) as any;
   return response.data.listBenchmarks.sort(
     (a: Benchmark, b: Benchmark) => a.executionTime - b.executionTime
   );
