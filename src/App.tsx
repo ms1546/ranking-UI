@@ -10,6 +10,9 @@ const App: React.FC = () => {
     fetchRankings().then(setRankings);
   }, []);
 
+  const githubBaseUrl = 'https://github.com/ms1546/benchmark-test/blob';
+  const fileName = 'index.js';
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 flex items-center justify-center">
       <div className="container mx-auto p-6 bg-white shadow-md rounded-md">
@@ -26,12 +29,22 @@ const App: React.FC = () => {
                 <span className="text-lg font-medium text-gray-700">
                   #{index + 1} {item.branch}
                 </span>
-                  <span className="text-sm text-gray-500">
-                    {new Date(item.timestamp).toLocaleString()}
-                  </span>
+                <span className="text-sm text-gray-500">
+                  {new Date(item.timestamp).toLocaleString()}
+                </span>
               </div>
               <div className="mt-2 text-gray-600">
                 <strong>処理時間:</strong> {item.executionTime.toFixed(2)} ms
+              </div>
+              <div className="mt-2 text-blue-600">
+                <a
+                  href={`${githubBaseUrl}/${item.commitHash}/${fileName}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline hover:text-blue-700"
+                >
+                  コード
+                </a>
               </div>
             </li>
           ))}

@@ -2,6 +2,7 @@ export interface Benchmark {
     branch: string;
     timestamp: string;
     executionTime: number;
+    commitHash: string;
   }
 
 export interface AwsConfig {
