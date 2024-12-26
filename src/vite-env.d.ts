@@ -6,6 +6,6 @@ interface ImportMetaEnv {
     readonly VITE_GRAPHQL_API_KEY: string;
   }
 
-  interface ImportMeta {
-    readonly env: ImportMetaEnv;
-  }
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

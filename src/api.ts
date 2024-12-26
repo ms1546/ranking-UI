@@ -13,6 +13,7 @@ const listBenchmarksQuery = `
         branch
         timestamp
         executionTime
+        commitHash
       }
     }
   }
