@@ -3,7 +3,7 @@ export interface Benchmark {
     timestamp: string;
     executionTime: number;
     commitHash: string;
-  }
+}
 
 export interface AwsConfig {
   aws_project_region: string;
