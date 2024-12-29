@@ -34,7 +34,7 @@ const App: React.FC = () => {
                 </span>
               </div>
               <div className="mt-2 text-gray-600">
-                <strong>処理時間:</strong> {item.executionTime.toFixed(2)} ms
+                <strong>処理時間:</strong> {item.executionTime === 0 ? '計測不能' : `${item.executionTime.toFixed(2)} ms`}
               </div>
               <div className="mt-2 text-blue-600">
                 <a
