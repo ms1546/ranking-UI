@@ -7,9 +7,12 @@ import './index.css';
 
 const App: React.FC = () => {
   const [rankings, setRankings] = useState<Benchmark[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchRankings().then(setRankings);
+    fetchRankings()
+      .then((data) => setRankings(data))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const githubBaseUrl = 'https://github.com/ms1546/benchmark-test/blob';
@@ -21,14 +24,19 @@ const App: React.FC = () => {
         <h1 className="text-4xl font-bold text-gray-800 text-center">
           Benchmark Rankings
         </h1>
-        {rankings.length === 0 ? (
+        {isLoading ? (
+          <p className="text-center text-gray-500 text-lg">ロード中...</p>
+        ) : rankings.length === 0 ? (
           <p className="text-center text-gray-500 text-lg">
             ランキングデータがありません。
           </p>
         ) : (
           <div className="space-y-4">
             {rankings.map((item, index) => (
-              <Card key={`${item.branch}-${item.timestamp}`} className="shadow-md border border-gray-200 rounded-lg">
+              <Card
+                key={`${item.branch}-${item.timestamp}`}
+                className="shadow-md border border-gray-200 rounded-lg"
+              >
                 <CardHeader className="flex justify-between w-full p-4 border-b border-gray-100">
                   <div className="text-lg font-medium text-gray-800">
                     #{index + 1} {item.branch}
