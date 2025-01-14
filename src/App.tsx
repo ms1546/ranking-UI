@@ -47,12 +47,12 @@ const App: React.FC = () => {
                   key={`${item.branch}-${item.timestamp}`}
                   className={`shadow-md border border-gray-200 rounded-lg ${
                     index === 0
-                      ? 'bg-yellow-100' // 金メダル用
+                      ? 'bg-yellow-100'
                       : index === 1
-                      ? 'bg-gray-200' // 銀メダル用
+                      ? 'bg-gray-200'
                       : index === 2
-                      ? 'bg-orange-100' // 銅メダル用
-                      : 'bg-white' // 4位以降
+                      ? 'bg-orange-100'
+                      : 'bg-white'
                   }`}
                 >
                   <CardHeader className="flex justify-between w-full p-4 border-b border-gray-100">
